@@ -1,11 +1,16 @@
 package com.example.fitnessapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,5 +31,38 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             }
         });
+    }
+
+
+    // adds the quick access menu to activity
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.quick_menu, menu);
+        return true;
+    }
+
+
+    // gives quick access menu functionality
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logoutMenu:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                return true;
+            case R.id.profileMenu:
+                Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.workoutMenu:
+                Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item1:
+                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }
