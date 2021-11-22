@@ -58,9 +58,11 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             case R.id.profileMenu:
                 Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
+
                 return true;
             case R.id.workoutMenu:
                 Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(ProfileActivity.this, Workout.class));
                 return true;
             case R.id.item1:
                 Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();

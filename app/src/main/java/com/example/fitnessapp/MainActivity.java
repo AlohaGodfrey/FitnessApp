@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -131,6 +134,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+
+    }
+
+
+    //added menu to login page for dev acccess please delete in final app
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.quick_menu, menu);
+        return true;
+    }
+
+
+    // gives quick access menu functionality
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logoutMenu:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                return true;
+            case R.id.profileMenu:
+                Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
+
+                return true;
+            case R.id.workoutMenu:
+                Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, Workout.class));
+                return true;
+            case R.id.item1:
+                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 }
