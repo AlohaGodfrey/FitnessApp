@@ -2,7 +2,6 @@ package com.example.fitnessapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,10 +61,14 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             case R.id.workoutMenu:
                 Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ProfileActivity.this, Workout.class));
+                startActivity(new Intent(ProfileActivity.this, WorkoutActivity.class));
                 return true;
             case R.id.item1:
                 Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.historyMenu:
+                startActivity(new Intent(ProfileActivity.this, HistoryActivity.class));
+                Toast.makeText(this, "History was selected", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

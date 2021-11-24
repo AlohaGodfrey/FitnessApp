@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -17,16 +16,27 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
     private TextView banner, registerUser;
     private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
+    private List<String> myList;
+
 //    Declare contents of register users page
 
     private FirebaseAuth mAuth;
+    private DatabaseReference dbReference;
 //    Declare a Instance of FirebaseAuth which is the backed system
 //    used for the authenticaion and firebase login plus databases
 
@@ -36,6 +46,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_register_user);
 
         mAuth = FirebaseAuth.getInstance();
+        dbReference = FirebaseDatabase.getInstance().getReference();
 
         banner = (TextView) findViewById(R.id.banner);
         banner.setOnClickListener(this);
@@ -49,6 +60,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById((R.id.PassInputRegister));
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+
+        myList = new ArrayList<>();
     }
 
     @Override
@@ -125,6 +138,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                         progressBar.setVisibility(View.GONE);
                                         //Log.e("dbms", "onComplete: Failed=" + task.getException().getMessage());
                                         //redirect to login
+                                        insertWorkoutDb();
                                         startActivity(new Intent(RegisterUser.this,ProfileActivity.class));
                                     }else{
                                         Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
@@ -132,11 +146,29 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     }
                                 }
                             });
+
+
+
+
                         }else {
                             Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                             //progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+    }
+
+    private void insertWorkoutDb(){
+        String msg1 = "Signed up --------  ";
+
+        //instantiate date
+        Date date = Calendar.getInstance().getTime();
+        //Formats Date
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String userDate = df.format(date);
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        msg1 = msg1 + userDate;
+
+        dbReference.child("Users").child(userID).child("Workout").setValue(msg1);
     }
 }

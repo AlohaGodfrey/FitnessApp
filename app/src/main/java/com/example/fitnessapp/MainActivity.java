@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             case R.id.workoutMenu:
                 Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this, Workout.class));
+                startActivity(new Intent(MainActivity.this, WorkoutActivity.class));
                 return true;
             case R.id.item1:
                 Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();

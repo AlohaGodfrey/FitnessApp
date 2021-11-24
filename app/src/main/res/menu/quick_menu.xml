@@ -15,6 +15,10 @@
         android:title="Workout Now"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/historyMenu"
+        android:title="Session History"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/logoutMenu"
         android:title="Logout"
         app:showAsAction="never"/>
