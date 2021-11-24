@@ -282,9 +282,9 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
 
             //configure database workoutHistory using arrays
 //            r.run();
-            downDbList();
-//            upDbList(userExercise, userWeight, userDate);
-//            startActivity(new Intent(WorkoutActivity.this,HistoryActivity.class));
+            //downDbList();
+           upDbList(userExercise, userWeight, userDate);
+           startActivity(new Intent(WorkoutActivity.this,HistoryActivity.class));
 
             Log.d(TAG, String.valueOf(fitnessHistory.isEmpty()));
             Log.d(TAG, String.valueOf(fitnessHistory.size()));
