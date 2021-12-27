@@ -13,9 +13,11 @@
         android:theme="@style/Theme.FitnessApp">
         <activity
             android:name=".HistoryActivity"
+            android:parentActivityName=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".WorkoutActivity"
+            android:parentActivityName=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

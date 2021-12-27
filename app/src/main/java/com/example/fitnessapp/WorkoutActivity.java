@@ -127,6 +127,7 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
         spinnerWeight.setOnItemSelectedListener(this);
 
 
+
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,8 +231,7 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
         switch (setCounter) {
             case 1:
                 set1.setBackground(getResources().getDrawable(R.drawable.redcircle));
-                mCompWorkout.setVisibility(View.VISIBLE);
-                mButtonStartPause.setVisibility(View.GONE);
+
                 //devops move two functions to case 4 to get buttons to stop activating early
                 break;
             case 2:
@@ -242,7 +242,8 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
                 break;
             case 4:
                 set4.setBackground(getResources().getDrawable(R.drawable.redcircle));
-
+                mCompWorkout.setVisibility(View.VISIBLE);
+                mButtonStartPause.setVisibility(View.GONE);
                 break;
             default:
 
@@ -380,7 +381,8 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
     }
 
 
-    // gives quick access menu functionality
+    // gives quick access menu functionality uses custom design so that each implementation
+//    of the menu is specific and unnecessary items are not repeated.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -393,9 +395,9 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
                 Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(WorkoutActivity.this, ProfileActivity.class));
                 return true;
-            case R.id.item1:
-                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-                return true;
+//            case R.id.item1:
+//                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

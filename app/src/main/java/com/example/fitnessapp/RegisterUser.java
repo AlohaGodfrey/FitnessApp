@@ -169,6 +169,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         msg1 = msg1 + userDate;
 
-        dbReference.child("Users").child(userID).child("Workout").setValue(msg1);
+        dbReference.child("Users").child(userID).child("Workout").push().setValue(msg1);
     }
 }

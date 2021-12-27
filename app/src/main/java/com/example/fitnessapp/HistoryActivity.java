@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.FirebaseApp;
@@ -47,10 +48,14 @@ public class HistoryActivity extends AppCompatActivity {
 
     private ListView mUserList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        //adds back button to return home
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //firebase db resources
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -122,14 +127,15 @@ public class HistoryActivity extends AppCompatActivity {
                 return true;
             case R.id.profileMenu:
                 Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(HistoryActivity.this, ProfileActivity.class));
                 return true;
             case R.id.workoutMenu:
                 Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(HistoryActivity.this, WorkoutActivity.class));
                 return true;
-            case R.id.item1:
-                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-                return true;
+//            case R.id.item1:
+//                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
