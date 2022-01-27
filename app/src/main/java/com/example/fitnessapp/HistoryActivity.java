@@ -40,7 +40,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class HistoryActivity extends AppCompatActivity {
-    private static final String TAG = "Before";
+    //TAG used for Debugging
+    private static final String TAG = "Debug";
 
     private DatabaseReference dbReference;
     public ArrayList<String> fitnessHistory = new ArrayList<>();
@@ -65,11 +66,12 @@ public class HistoryActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,fitnessHistory);
         mUserList.setAdapter(arrayAdapter);
 
-
+        //retrieves data from firebase and poppulates array adapter on screen
         dbReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if (snapshot.exists()) {
+                    //updates screen with history data
                     String value = snapshot.getValue(String.class);
                     Log.i(TAG, String.valueOf(snapshot.getValue()));
                     fitnessHistory.add(value.toString());
@@ -133,9 +135,7 @@ public class HistoryActivity extends AppCompatActivity {
                 Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(HistoryActivity.this, WorkoutActivity.class));
                 return true;
-//            case R.id.item1:
-//                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-//                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

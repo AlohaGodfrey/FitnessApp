@@ -65,19 +65,10 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
     private int setCounter;
     //    private ConstraintLayout mLayoutSetCounter, mLayoutTimerView, mLayoutButton;
     private DatabaseReference dbReference;
-//    private FirebaseUser currentFirebaseUser;
+   //    private FirebaseUser currentFirebaseUser;
     private Date date;
 
     private List<String> fitnessHistory;
-//handlers runs the download db module twice. if you request once
-//    you only get blank result. requrest twice for full deets.
-//    final Handler handler = new Handler();
-//    final Runnable r = new Runnable() {
-//        public void run() {
-//            handler.postDelayed(this, 1000);
-//            downDbList();
-//        }
-//    };
 
 
     @Override
@@ -159,8 +150,7 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
         //change workout counter circles to red and start timer.
         //setBackground(getResources().getDrawable(R.drawable.redcircle));
 
-        //downDbList();
-        //downDbList2();
+
     }
 
 
@@ -395,9 +385,10 @@ public class WorkoutActivity extends AppCompatActivity implements AdapterView.On
                 Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(WorkoutActivity.this, ProfileActivity.class));
                 return true;
-//            case R.id.item1:
-//                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-//                return true;
+            case R.id.historyMenu:
+                Toast.makeText(this, "History was selected", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(WorkoutActivity.this, HistoryActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

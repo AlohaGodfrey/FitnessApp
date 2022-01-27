@@ -78,7 +78,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUser() {
-//        used to convert input to string and then validate the form
+    //      used to convert input to string and then validate the form
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
@@ -148,8 +148,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             });
 
 
-
-
                         }else {
                             Toast.makeText(RegisterUser.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                             //progressBar.setVisibility(View.GONE);
@@ -158,6 +156,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                 });
     }
 
+    //inserts the first signup entry and date to new account.
     private void insertWorkoutDb(){
         String msg1 = "Signed up --------  ";
 

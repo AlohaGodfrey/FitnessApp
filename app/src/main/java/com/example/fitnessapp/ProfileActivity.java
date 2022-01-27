@@ -30,19 +30,19 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView userName;
     private DatabaseReference dbReference;
     private String userID, name;
+
+    //tag is used for console debugging
     String TAG = "help";
-//    ConstraintLayout WorkoutConstraint, HistoryConstraint;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-//        WorkoutConstraint = (ConstraintLayout) findViewById(R.id.workoutConstraint);
-//        HistoryConstraint = (ConstraintLayout) findViewById(R.id.historyConstraint);
-
         userName = (TextView) findViewById(R.id.textView9);
 
+        //firebase user ID retrieval
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         dbReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID).child("fullName");
 
@@ -51,9 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name = snapshot.getValue(String.class);
                 name = snapshot.getValue().toString();
+                //personalises greeting message with users name from firebase
                 userName.setText(name);
-
-
             }
 
             @Override
@@ -62,8 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
+        //logout button functionality
         logout = (Button) findViewById(R.id.signOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //workout button functionality
         mWorkoutNow = (Button) findViewById(R.id.mWorkoutBtn);
         mWorkoutNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //history button functionality
         mHistory = (Button) findViewById(R.id.mHistoryBtn);
         mHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,45 +90,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void getUsername(){
 
-    }
 
-//    // adds the quick access menu to activity
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.quick_menu, menu);
-//        return true;
-//    }
-
-//
-//    // gives quick access menu functionality
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.logoutMenu:
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-//                return true;
-//            case R.id.profileMenu:
-//                Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
-//
-//                return true;
-//            case R.id.workoutMenu:
-//                Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
-//                startActivity(new Intent(ProfileActivity.this, WorkoutActivity.class));
-//                return true;
-////            case R.id.item1:
-////                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-////                return true;
-//            case R.id.historyMenu:
-//                startActivity(new Intent(ProfileActivity.this, HistoryActivity.class));
-//                Toast.makeText(this, "History was selected", Toast.LENGTH_LONG).show();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//
-//    }
 }

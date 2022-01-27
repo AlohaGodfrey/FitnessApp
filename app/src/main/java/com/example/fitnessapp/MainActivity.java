@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         register = (TextView) findViewById(R.id.Register);
         register.setOnClickListener(this);
-//        Intialises Views specified in the XML document
+   //    Intialises Views specified in the XML document
 
         signIn = (Button) findViewById(R.id.SignIn);
         signIn.setOnClickListener(this);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 userLogin();
                 break;
         }
-//        activates buttons on login screen.
+     //        activates buttons on login screen.
     }
 
     private void userLogin() {
@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
 
-
                      //redirect to user profile.
                     progressBar.setVisibility(View.GONE);
                     startActivity(new Intent(MainActivity.this,ProfileActivity.class));
@@ -136,40 +135,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
-
-
-    //added menu to login page for dev acccess please delete in final app
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.quick_menu, menu);
-//        return true;
-//    }
-
-
-//    // gives quick access menu functionality
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.logoutMenu:
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(MainActivity.this, MainActivity.class));
-//                return true;
-//            case R.id.profileMenu:
-//                Toast.makeText(this, "Profile was selected", Toast.LENGTH_LONG).show();
-//
-//                return true;
-//            case R.id.workoutMenu:
-//                Toast.makeText(this, "Workout was selected", Toast.LENGTH_LONG).show();
-//                startActivity(new Intent(MainActivity.this, WorkoutActivity.class));
-//                return true;
-//            case R.id.item1:
-//                Toast.makeText(this, "star was selected", Toast.LENGTH_LONG).show();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//
-//    }
 }
